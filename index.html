@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taller de Estadística Inferencial</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f9;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+      }
+      .session {
+        margin-bottom: 40px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .session h2 {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+        margin-top: 0;
+      }
+      .explanation {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-left: 5px solid #6c757d;
+        border-radius: 4px;
+      }
+      .explanation h3 {
+        color: #495057;
+        margin-top: 0;
+      }
+      .explanation .variables {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+      }
+      .variable-item {
+        background: #fff;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      .variable-item strong {
+        color: #2c3e50;
+        display: block;
+        margin-bottom: 5px;
+      }
+      .problem {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #eaf2f8;
+        border-left: 5px solid #3498db;
+        border-radius: 4px;
+      }
+      .problem h3 {
+        margin-top: 0;
+        color: #2980b9;
+      }
+      .solution {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #e8f8f5;
+        border-left: 5px solid #2ecc71;
+        border-radius: 4px;
+        display: none;
+      }
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      button:hover {
+        background-color: #2980b9;
+      }
+      .formula {
+        font-family: monospace;
+        background-color: #f9f9f9;
+        padding: 5px;
+        border-radius: 3px;
+        border: 1px solid #ddd;
+      }
+      .error {
+        color: #dc3545;
+        padding: 10px;
+        background-color: #f8d7da;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+      .solution-steps {
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .solution-steps .variables {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+      }
+      .solution-steps .formula {
+        background-color: #e3f2fd;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+      }
+      .solution-steps .step {
+        border-left: 3px solid #3498db;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: #f8f9fa;
+      }
+      .solution-steps .final-result {
+        background-color: #e8f5e9;
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 15px;
+        text-align: center;
+      }
+      .solution-steps p {
+        margin: 5px 0;
+      }
+      .solution-steps ul {
+        margin: 5px 0;
+        padding-left: 20px;
+      }
+      .solution-steps .formula p {
+        font-family: monospace;
+        font-size: 1.1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Taller de Distribución Binomial, Poisson e Hipergeométrica</h1>
+
+      <!-- Sesión 1: Distribución Binomial -->
+      <div class="session">
+        <h2>Sesión 1: Distribución Binomial</h2>
+
+        <div class="explanation">
+          <h3>Explicación</h3>
+          <p>
+            La distribución binomial describe el número de éxitos en una
+            secuencia de n ensayos independientes, cada uno con una probabilidad
+            p de éxito.
+          </p>
+          <p>
+            <strong>Fórmula:</strong>
+            <span class="formula">P(X = k) = C(n,k) × pᵏ × (1-p)ⁿ⁻ᵏ</span>
+          </p>
+          <div class="variables">
+            <div class="variable-item">
+              <strong>n</strong>
+              <p>Número total de ensayos independientes</p>
+            </div>
+            <div class="variable-item">
+              <strong>p</strong>
+              <p>Probabilidad de éxito en cada ensayo</p>
+            </div>
+            <div class="variable-item">
+              <strong>k</strong>
+              <p>Número de éxitos deseados</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="problem">
+          <h3>Distribución Binomial</h3>
+          <p>
+            En una fábrica de bolígrafos,
+            <input
+              type="number"
+              id="prob-exito"
+              value="80"
+              min="0"
+              max="100"
+              step="1"
+              style="width: 60px"
+            />% de los bolígrafos producidos pasan el control de calidad. Si se
+            seleccionan
+            <input
+              type="number"
+              id="num-ensayos"
+              value="10"
+              min="1"
+              step="1"
+              style="width: 60px"
+            />
+            bolígrafos al azar, ¿cuál es la probabilidad de que exactamente
+            <input
+              type="number"
+              id="num-exitos"
+              value="7"
+              min="0"
+              step="1"
+              style="width: 60px"
+            />
+            bolígrafos pasen el control de calidad?
+          </p>
+          <button onclick="calcularBinomial()">Mostrar Solución</button>
+          <div id="solution-binomial" class="solution"></div>
+        </div>
+      </div>
+
+      <!-- Sesión 2: Distribución de Poisson -->
+      <div class="session">
+        <h2>Sesión 2: Distribución de Poisson</h2>
+
+        <div class="explanation">
+          <h3>Explicación</h3>
+          <p>
+            La distribución de Poisson describe la probabilidad de que ocurra un
+            número específico de eventos en un intervalo de tiempo o espacio
+            fijo.
+          </p>
+          <p>
+            <strong>Fórmula:</strong>
+            <span class="formula">P(X = k) = (λᵏ × e⁻ᵝ) / k!</span>
+          </p>
+          <div class="variables">
+            <div class="variable-item">
+              <strong>λ (lambda)</strong>
+              <p>Promedio de ocurrencias en el intervalo</p>
+            </div>
+            <div class="variable-item">
+              <strong>k</strong>
+              <p>Número de ocurrencias deseadas</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="problem">
+          <h3>Distribución de Poisson</h3>
+          <p>
+            En una tienda, se observa que en promedio llegan
+            <input
+              type="number"
+              id="lambda"
+              value="3"
+              min="0"
+              step="0.1"
+              style="width: 60px"
+            />
+            clientes por hora. ¿Cuál es la probabilidad de que en una hora
+            lleguen exactamente
+            <input
+              type="number"
+              id="ocurrencias"
+              value="5"
+              min="0"
+              step="1"
+              style="width: 60px"
+            />
+            clientes?
+          </p>
+          <button onclick="calcularPoisson()">Mostrar Solución</button>
+          <div id="solution-poisson" class="solution"></div>
+        </div>
+      </div>
+
+      <!-- Sesión 3: Distribución Hipergeométrica -->
+      <div class="session">
+        <h2>Sesión 3: Distribución Hipergeométrica</h2>
+
+        <div class="explanation">
+          <h3>Explicación</h3>
+          <p>
+            La distribución hipergeométrica describe la probabilidad de obtener
+            k éxitos en n extracciones sin reposición de una población finita.
+          </p>
+          <p>
+            <strong>Fórmula:</strong>
+            <span class="formula"
+              >P(X = k) = [C(K,k) × C(N-K,n-k)] / C(N,n)</span
+            >
+          </p>
+          <div class="variables">
+            <div class="variable-item">
+              <strong>N</strong>
+              <p>Tamaño total de la población</p>
+            </div>
+            <div class="variable-item">
+              <strong>K</strong>
+              <p>Número de éxitos en la población</p>
+            </div>
+            <div class="variable-item">
+              <strong>n</strong>
+              <p>Tamaño de la muestra extraída</p>
+            </div>
+            <div class="variable-item">
+              <strong>k</strong>
+              <p>Número de éxitos deseados en la muestra</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="problem">
+          <h3>Distribución Hipergeométrica</h3>
+          <p>
+            En una urna hay
+            <input
+              type="number"
+              id="total-poblacion"
+              value="25"
+              min="1"
+              step="1"
+              style="width: 60px"
+            />
+            bolas en total, de las cuales
+            <input
+              type="number"
+              id="exitos-poblacion"
+              value="10"
+              min="0"
+              step="1"
+              style="width: 60px"
+            />
+            son rojas. Si se extraen
+            <input
+              type="number"
+              id="tamano-muestra"
+              value="5"
+              min="1"
+              step="1"
+              style="width: 60px"
+            />
+            bolas al azar sin reposición, ¿cuál es la probabilidad de que
+            exactamente
+            <input
+              type="number"
+              id="exitos-muestra"
+              value="3"
+              min="0"
+              step="1"
+              style="width: 60px"
+            />
+            bolas sean rojas?
+          </p>
+          <button onclick="calcularHipergeometrica()">Mostrar Solución</button>
+          <div id="solution-hypergeometric" class="solution"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
